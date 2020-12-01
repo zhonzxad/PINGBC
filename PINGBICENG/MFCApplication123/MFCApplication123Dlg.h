@@ -181,4 +181,11 @@ public:
 	
 
 	afx_msg void OnBnClickedBtnShowinfo();
+//	afx_msg void OnEnChangeEdit17J();
+	afx_msg void OnBnClickedRadio5Mrz1t();
+	afx_msg void OnBnClickedRadio6Sdsr();
+//	afx_msg void OnEnChangeEdit14Sdq();
+	afx_msg void OnEnKillfocusEdit14Sdq();
+	afx_msg void OnEnKillfocusEdit17J();
+//	afx_msg void OnEnChangeEdit1Xtxs();
 };

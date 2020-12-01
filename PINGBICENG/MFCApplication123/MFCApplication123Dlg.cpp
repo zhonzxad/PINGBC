@@ -112,6 +112,13 @@ ON_BN_CLICKED(IDC_RADIO16_F2, &CMFCApplication123Dlg::OnBnClickedRadio16F2)
 ON_BN_CLICKED(IDC_RADIO9_MRZ, &CMFCApplication123Dlg::OnBnClickedRadio9Mrz)
 ON_BN_CLICKED(IDC_RADIO10_SDSR, &CMFCApplication123Dlg::OnBnClickedRadio10Sdsr)
 ON_BN_CLICKED(IDC_BTN_SHOWINFO, &CMFCApplication123Dlg::OnBnClickedBtnShowinfo)
+//ON_EN_CHANGE(IDC_EDIT17_J, &CMFCApplication123Dlg::OnEnChangeEdit17J)
+ON_BN_CLICKED(IDC_RADIO5_MRZ1T, &CMFCApplication123Dlg::OnBnClickedRadio5Mrz1t)
+ON_BN_CLICKED(IDC_RADIO6_SDSR, &CMFCApplication123Dlg::OnBnClickedRadio6Sdsr)
+//ON_EN_CHANGE(IDC_EDIT14_SDQ, &CMFCApplication123Dlg::OnEnChangeEdit14Sdq)
+ON_EN_KILLFOCUS(IDC_EDIT14_SDQ, &CMFCApplication123Dlg::OnEnKillfocusEdit14Sdq)
+ON_EN_KILLFOCUS(IDC_EDIT17_J, &CMFCApplication123Dlg::OnEnKillfocusEdit17J)
+//ON_EN_CHANGE(IDC_EDIT1_XTXS, &CMFCApplication123Dlg::OnEnChangeEdit1Xtxs)
 END_MESSAGE_MAP()
 
 
@@ -163,6 +170,21 @@ BOOL CMFCApplication123Dlg::OnInitDialog()
 	//	EndDialog(IDCANCEL);
 	//	return FALSE;  //弹出声明框
 	//}
+
+	((CButton *)GetDlgItem(IDC_RADIO3_MRZ5MA))->SetCheck(BST_CHECKED);
+	((CButton *)GetDlgItem(IDC_RADIO5_MRZ1T ))->SetCheck(BST_CHECKED);
+	((CButton *)GetDlgItem(IDC_RADIO7_MRZ20D))->SetCheck(BST_CHECKED);
+	((CButton *)GetDlgItem(IDC_RADIO11_AQXS2))->SetCheck(BST_CHECKED);
+
+	//GetDlgItem(IDC_EDIT2_SDSR)->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT3_SDSR)->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT4_NUMBER)->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT5_CSJD)->EnableWindow(FALSE);
+	//GetDlgItem(IDC_EDIT7_HL)->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT10_AQXS)->EnableWindow(FALSE);
+	//GetDlgItem(IDC_EDIT18_R2)->EnableWindow(FALSE);
+	//GetDlgItem(IDC_EDIT14_SDQ)->EnableWindow(FALSE);
+	//GetDlgItem(IDC_EDIT17_SDF1)->EnableWindow(FALSE);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -366,12 +388,18 @@ void CMFCApplication123Dlg::OnBnClickedRadioXtxs()
 	// 如果在函数内部来设置变量，就不需要设置返回值是CString类型
 	// 可以考虑设置成bool形或者void
 	H0 = OutputH0(Voltage, WindowMaterial);	  
+
+	GetDlgItem(IDC_EDIT1_XTXS)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT2_SDSR)->EnableWindow(FALSE);
 }
 
 // 用户点击了 H0手动输入
 void CMFCApplication123Dlg::OnBnClickedRadio2Sdsr()
 {
 	GetDlgItemText(IDC_EDIT2_SDSR, H0);
+
+	GetDlgItem(IDC_EDIT1_XTXS)->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT2_SDSR)->EnableWindow(TRUE);
 }
 
 // #####################电流#########################
@@ -379,12 +407,18 @@ void CMFCApplication123Dlg::OnBnClickedRadio2Sdsr()
 void CMFCApplication123Dlg::OnBnClickedRadio3Mrz5ma()
 {
 	I = L"5";
+
+	//GetDlgItem(IDC_RADIO3_MRZ5MA)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT3_SDSR)->EnableWindow(FALSE);
 }
 
 // 电流Ｉ：用户单击了手动输入
 void CMFCApplication123Dlg::OnBnClickedRadio4Sdsr()
 {
 	GetDlgItemText(IDC_EDIT3_SDSR, I);
+
+	GetDlgItem(IDC_EDIT3_SDSR)->EnableWindow(TRUE);
+	//GetDlgItem(IDC_EDIT2_SDSR)->EnableWindow(FALSE);
 }
 
 /*
@@ -428,37 +462,52 @@ void CMFCApplication123Dlg::OnBnClickedRadio213tong()
 {
 	WindowMaterial = L"3mm 铜";
 }
+
 // 用户单击了 0.5mm 铜
 void CMFCApplication123Dlg::OnBnClickedRadio205tong()
 {
 	WindowMaterial = L"0.5mm 铜";
 }
+
 // 用户单击了 2mm 铝
 void CMFCApplication123Dlg::OnBnClickedRadio222lv()
 {
 	WindowMaterial = L"2mm 铝";
 }
+
 // 用户单击了3mm铝
 void CMFCApplication123Dlg::OnBnClickedRadio163mmlv()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	WindowMaterial = L"3mm 铝";
 }
+
 // 出射角度#############################################
 void CMFCApplication123Dlg::OnBnClickedRadio7Mrz20d()
 {
 	OutAngle = L"20";
 	int cejiao = 1;
+
+	//GetDlgItem(IDC_EDIT1_XTXS)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT5_CSJD)->EnableWindow(FALSE);
 }
+
 // ##############安全系数###########################
 // 默认值
 void CMFCApplication123Dlg::OnBnClickedRadio11Aqxs2()
 {
+	//GetDlgItem(IDC_EDIT1_XTXS)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT10_AQXS)->EnableWindow(FALSE);
+
 	anquan = L"2";
 }
+
 // 手动输入
 void CMFCApplication123Dlg::OnBnClickedRadio12()
 {
+	GetDlgItem(IDC_EDIT10_AQXS)->EnableWindow(TRUE);
+	//GetDlgItem(IDC_EDIT4_NUMBER)->EnableWindow(FALSE);
+
 	GetDlgItemText(IDC_EDIT10_AQXS, anquan);
 }
 
@@ -494,6 +543,9 @@ void CMFCApplication123Dlg::OnBnClickedRadio13fe()
 // 系统显示Q
 void CMFCApplication123Dlg::OnBnClickedRadio13Q()
 {
+	GetDlgItem(IDC_EDIT14_Q)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT14_SDQ)->EnableWindow(FALSE);
+
 	// 同样
 	OutputQ(Voltage, AngleQ);
 }
@@ -501,24 +553,18 @@ void CMFCApplication123Dlg::OnBnClickedRadio13Q()
 // 用户点击了手动输入Q
 void CMFCApplication123Dlg::OnBnClickedRadio13Sdq()
 {
-	GetDlgItemText(IDC_EDIT14_SDQ, Q);
-	// 判断q的合理性
-	try
-	{
-		double temp = _ttof(Q);
-		if (temp < 0)
-			MessageBox(L"请输入正数", _T("提示"), MB_OK);
-	}
-	catch (...)
-	{
-		MessageBox(L"错误的输入", _T("提示"), MB_OK);
-	}
+	GetDlgItem(IDC_EDIT14_SDQ)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT14_Q)->EnableWindow(FALSE);
 
+	GetDlgItemText(IDC_EDIT14_SDQ, Q);
 }
 
 // 用户点击了系统显示F
 void CMFCApplication123Dlg::OnBnClickedRadioF()
 {
+	GetDlgItem(IDC_EDIT18_R1)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT18_R2)->EnableWindow(FALSE);
+
 	// 与H0同样的问题
 	F = OutputF();
 	SetDlgItemText(IDC_EDIT18_R1, F);
@@ -527,6 +573,9 @@ void CMFCApplication123Dlg::OnBnClickedRadioF()
 // 用户点击了手动输入F
 void CMFCApplication123Dlg::OnBnClickedRadio15F()
 {
+	GetDlgItem(IDC_EDIT18_R2)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT18_R1)->EnableWindow(FALSE);
+
 	GetDlgItemText(IDC_EDIT18_R2, F);
 }
 
@@ -561,7 +610,10 @@ void CMFCApplication123Dlg::OnBnClickedRadioLslv()
 // 用户点击了漏射剂量率的默认值
 void CMFCApplication123Dlg::OnBnClickedRadio9Mrz()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	// TODO: 在此添加控件通知处理程序代码3
+	GetDlgItem(IDC_EDIT6_MRHL)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT7_HL)->EnableWindow(FALSE);
+
 	Hl = OutputHl(Voltage);
 	SetDlgItemText(IDC_EDIT6_MRHL, Hl);
 }
@@ -570,6 +622,9 @@ void CMFCApplication123Dlg::OnBnClickedRadio9Mrz()
 void CMFCApplication123Dlg::OnBnClickedRadio10Sdsr()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	GetDlgItem(IDC_EDIT7_HL)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT6_MRHL)->EnableWindow(FALSE);
+
 	GetDlgItemText(IDC_EDIT7_HL, Hl);
 }
 
@@ -577,6 +632,8 @@ void CMFCApplication123Dlg::OnBnClickedRadio10Sdsr()
 void CMFCApplication123Dlg::OnBnClickedRadio8Sdsr()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	GetDlgItem(IDC_EDIT5_CSJD)->EnableWindow(TRUE);
+
 	GetDlgItemText(IDC_EDIT5_CSJD, OutAngle);
 }
 
@@ -585,19 +642,23 @@ void CMFCApplication123Dlg::OnBnClickedRadio8Sdsr()
 void CMFCApplication123Dlg::OnBnClickedRadio16F1()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	GetDlgItem(IDC_EDIT17_F1)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT17_SDF1)->EnableWindow(FALSE);
+
 	F1 = OutputF();
 	SetDlgItemText(IDC_EDIT17_F1, F1);
-	return;
-
-
 }
 
 // 用户点击了手动输入F1
 void CMFCApplication123Dlg::OnBnClickedRadio16F2()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	GetDlgItem(IDC_EDIT17_SDF1)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT17_F1)->EnableWindow(FALSE);
+
 	GetDlgItemText(IDC_EDIT17_SDF1, F1);
 }
+
 // 用户点击了图解法厚度计算
 void CMFCApplication123Dlg::OnBnClickedRadio15Tujie()
 {
@@ -621,11 +682,14 @@ void CMFCApplication123Dlg::OnBnClickedRadio15Tujie()
 	}
 }
 
-
 // #################用户单击主页面确定########################
 // 用户单击了确定按钮
 void CMFCApplication123Dlg::OnBnClickedButton32Ok()
 {
+	// 使用之前先清空
+	//CString t;
+	//SetDlgItemText(IDC_EDIT29_RIZHI, L"");
+
 	// 判断前三个是否为选中
 	// 如果是最后一个被选择，才进行判断map中
 	CString a, b, c, d, e, f;
@@ -1242,7 +1306,8 @@ CString CMFCApplication123Dlg::By1()
 			double fenmu = num_I * num_H0 * num_anquan;
 			num_B = fenzi / fenmu;
 
-			B = SignificantNum(num_B, 2);
+			//B = SignificantNum(num_B, 2);
+			B.Format(_T("%.2ef"), num_B);
 			//B.Format(_T("%.02f"), num_B);
 			SetDlgItemText(IDC_EDIT27_B, B);
 			return B;
@@ -1269,6 +1334,8 @@ CString CMFCApplication123Dlg::SignificantNum(double OriNum,int flag)
 	double intpart;
 	// 求3.1415的小数部分,得到结果为小数部分
 	double fractpart = modf(OriNum, &intpart);
+
+	
 	// 预初始化，写整数部分到CString
 	SignificantNumText.Format(_T("%.0f"), intpart);
 	SignificantNumText.Append(L".");
@@ -1307,6 +1374,11 @@ void CMFCApplication123Dlg::OnSSCSBtnEnter()
 		MessageBox(L"请重新输入正确数字", _T("错误"), MB_OK);
 		return;
 	}
+
+	int a = _ttoi(SSCS);
+	if (a < 0 || a>5)
+		a = 5;
+	SSCS.Format(_T("%d"), a);
 
 	//m_SSCS.DoModal();
 	//m_SSCS.SSCSText = SSCS;
@@ -1381,11 +1453,12 @@ CString CMFCApplication123Dlg::Xy1Q()
 	{
 		if ((std::get<0>(t.second) == Voltage) && (std::get<1>(t.second) == DoorMaterial))
 		{
-			X.Format(_T("%.1f"), t.first);
+
+			//X.Format(_T("%f"), std::ceil(t.first));
+			X.Format(_T("%d"), static_cast<int>(std::ceil(t.first)));
 			SetDlgItemText(IDC_EDIT28_X, X);
 
 			return X;
-
 		}
 	}
 
@@ -1486,7 +1559,8 @@ CString CMFCApplication123Dlg::By2()
 			double by2 = fenzi / fenmu;
 			num_B = pow(10, -6) * by2;
 			//double A = pow(10, -1);
-			B.Format(_T("%.2f"), num_B);
+			//B.Format(_T("%.2f"), num_B);
+			B.Format(_T("%.2ef"), num_B);
 			SetDlgItemText(IDC_EDIT27_B, B);
 			return B;
 		}
@@ -1516,7 +1590,7 @@ CString CMFCApplication123Dlg::Xy2()
 			int num_door = _ttoi(NumDoor);
 			double n = log10(1 / num_B);
 			double num_X = (_ttof(T1) + (n - 1) * _ttof(Te) + 1) / num_door;
-			X.Format(_T("%d"), num_X);
+			X.Format(_T("%d"), static_cast<int>(std::ceil(num_X)));
 			SetDlgItemText(IDC_EDIT28_X, X);
 			return X;
 		}
@@ -1561,7 +1635,8 @@ CString CMFCApplication123Dlg::Bs1()
 			double a = fenzi / fenmu;
 
 			num_B = a;
-			B.Format(_T("%.2f"), num_B);
+			//B.Format(_T("%.2f"), num_B);
+			B.Format(_T("%.2ef"), num_B);
 			SetDlgItemText(IDC_EDIT27_B, B);
 			return B;
 		}
@@ -1591,7 +1666,7 @@ CString CMFCApplication123Dlg::Xs1()
 			int num_TVL = _ttoi(TVL);
 			//double num_B = _ttof(B);
 			double num_X = (num_TVL * log10(num_B)*(-1)) / num_door;
-			X.Format(_T("%.2f"), num_X);
+			X.Format(_T("%d"), static_cast<int>(std::ceil(num_X)));
 			SetDlgItemText(IDC_EDIT28_X, X);
 			return X;
 		}
@@ -1657,7 +1732,8 @@ CString CMFCApplication123Dlg::Bs2()
 			double fenzi = num_Hc * num_R*num_R*num_R0*num_R0*num_RRR*num_RRR*pow(10, -6);
 			double fenmu = num_D10 * num_anquan*num_F1*num_a1*pow(num_F2*num_a2, (num_j - 1));
 			num_B = fenzi / fenmu;
-			B.Format(_T("%.2f"), num_B);
+			//B.Format(_T("%.2f"), num_B);
+			B.Format(_T("%.2ef"), num_B);
 			SetDlgItemText(IDC_EDIT27_B, B);
 			return B;
 		}
@@ -1688,7 +1764,7 @@ CString CMFCApplication123Dlg::Xs2()
 			int num_door = _ttoi(NumDoor);
 			double n = log10(1 / num_B);
 			double num_X = (_ttof(T1) + (n - 1) * _ttof(Te) + 1) / num_door;
-			X.Format(_T("%.0f"), num_X);
+			X.Format(_T("%d"), static_cast<int>(std::ceil(num_X)));
 			SetDlgItemText(IDC_EDIT28_X, X);
 			return X;
 		}
@@ -1723,7 +1799,8 @@ CString CMFCApplication123Dlg::Bl1()
 
 			num_B = num_Hc * pow(num_R, 2) / (num_Hl * num_anquan);
 
-			B.Format(_T("%.2f"), num_B);
+			//B.Format(_T("%.2f"), num_B);
+			B.Format(_T("%.2ef"), num_B);
 			SetDlgItemText(IDC_EDIT27_B, B);
 			return B;
 		}
@@ -1752,7 +1829,7 @@ CString CMFCApplication123Dlg::Xl1()
 			double num_TVL = _ttof(TVL);
 			//double num_B = _ttof(B);
 			double num_X = (num_TVL * log10(num_B)*(-1)) / num_door;
-			X.Format(_T("%.2f"), num_X);
+			X.Format(_T("%d"), static_cast<int>(std::ceil(num_X)));
 			SetDlgItemText(IDC_EDIT28_X, X);
 			return X;
 		}
@@ -1786,7 +1863,8 @@ CString CMFCApplication123Dlg::Bl2()
 
 			num_B = num_Hc * pow(num_R, 2) / (num_Hl * num_anquan);
 
-			B.Format(_T("%.2f"), num_B);
+			//B.Format(_T("%.2f"), num_B);
+			B.Format(_T("%.2ef"), num_B);
 			SetDlgItemText(IDC_EDIT27_B, B);
 			return B;
 		}
@@ -1815,7 +1893,7 @@ CString CMFCApplication123Dlg::Xl2()
 			int num_door = _ttoi(NumDoor);
 			double n = log10(1 / num_B);
 			double num_X = (_ttof(T1) + (n - 1) * _ttof(Te) + 1) / num_door;
-			X.Format(_T("%d"), num_X);
+			X.Format(_T("%d"), static_cast<int>(std::ceil(num_X)));
 			SetDlgItemText(IDC_EDIT28_X, X);
 			return X;
 		}
@@ -1851,7 +1929,8 @@ CString CMFCApplication123Dlg::BT1()
 			double num_HM = _ttof(TKSS_Value[IDC_EDIT_HM]);
 
 			num_B = 4 * pow(10, -5) * num_HM * pow(num_DI, 2) * pow(num_DS, 2) / (_ttof(D10) * pow(num_LTJ, 1.3) * _ttof(anquan));
-			B.Format(_T("%.2f"), num_B);
+			//B.Format(_T("%.2f"), num_B);
+			B.Format(_T("%.2ef"), num_B);
 			SetDlgItemText(IDC_EDIT27_B, B);
 			return B;
 		}
@@ -1881,7 +1960,7 @@ CString CMFCApplication123Dlg::XT1()
 			int num_door = _ttoi(NumDoor);
 			double n = log10(1 / num_B);
 			double num_X = (_ttof(T1) + (n - 1) * _ttof(Te) + 1) / num_door;
-			X.Format(_T("%.0f"), num_X);
+			X.Format(_T("%d"), static_cast<int>(std::ceil(num_X)));
 			SetDlgItemText(IDC_EDIT28_X, X);
 			return X;
 		}
@@ -1917,7 +1996,8 @@ CString CMFCApplication123Dlg::BT2()
 			JJ = TKSS_Value[IDC_EDIT_JJ];
 			double f = Outputf(JJ);
 			num_B = pow(10, -6) * num_H * pow(num_DR, 2) / (_ttof(D10) * num_F * f * _ttof(anquan));
-			B.Format(_T("%.2f"), num_B);
+			//B.Format(_T("%.2f"), num_B);
+			B.Format(_T("%.2ef"), num_B);
 			SetDlgItemText(IDC_EDIT27_B, B);
 			return B;
 		}
@@ -1948,7 +2028,7 @@ CString CMFCApplication123Dlg::XT2()
 			int num_door = _ttoi(NumDoor);
 			double n = log10(1 / num_B);
 			double num_X = (_ttof(T1) + (n - 1) * _ttof(Te) + 1) / num_door;
-			X.Format(_T("%d"), num_X);
+			X.Format(_T("%d"), static_cast<int>(std::ceil(num_X)));
 			SetDlgItemText(IDC_EDIT28_X, X);
 			return X;
 		}
@@ -2186,7 +2266,7 @@ void CMFCApplication123Dlg::SaveFile2TXT(CString Cfilename, CString Ctext)
 	outfile.close();
 }
 
-
+// 写日志
 void CMFCApplication123Dlg::WriteLog(CString s)
 {
 	auto now = std::chrono::system_clock::now();
@@ -2266,3 +2346,95 @@ void CMFCApplication123Dlg::OnBnClickedBtnShowinfo()
 	
 	m_SHENGMDlg->ShowWindow(SW_SHOW);
 }
+
+//void CMFCApplication123Dlg::OnEnChangeEdit17J()
+//{
+//	// TODO:  如果该控件是 RICHEDIT 控件，它将不
+//	// 发送此通知，除非重写 CDialogEx::OnInitDialog()
+//	// 函数并调用 CRichEditCtrl().SetEventMask()，
+//	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
+//
+//	// TODO:  在此添加控件通知处理程序代码
+//	CString SSCS, temp;
+//	GetDlgItemText(IDC_EDIT17_J, SSCS);
+//
+//	int a = _ttoi(SSCS);
+//	if (a < 0 || a>5)
+//		a = 5;
+//	temp.Format(_T("%d"), a);
+//
+//	SetDlgItemText(IDC_EDIT17_J, temp);
+//}
+
+
+// 单机最大工作射线机数量-自动
+void CMFCApplication123Dlg::OnBnClickedRadio5Mrz1t()
+{
+	// TODO: 在此添加控件通知处理程序代码
+
+	//GetDlgItem(IDC_EDIT1_XTXS)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT4_NUMBER)->EnableWindow(FALSE);
+}
+
+// 单机最大工作射线机数量-手动
+void CMFCApplication123Dlg::OnBnClickedRadio6Sdsr()
+{
+	// TODO: 在此添加控件通知处理程序代码
+		//GetDlgItem(IDC_EDIT1_XTXS)->EnableWindow(TRUE);
+	GetDlgItem(IDC_EDIT4_NUMBER)->EnableWindow(TRUE);
+}
+
+// 用户手动输入Q-判断合理性
+void CMFCApplication123Dlg::OnEnKillfocusEdit14Sdq()
+{
+	// TODO: 在此添加控件通知处理程序代码3
+
+	// 判断q的合理性
+	try
+	{
+		CString QTemp;
+		GetDlgItemText(IDC_EDIT14_SDQ, QTemp);
+		double temp = _ttof(QTemp);
+		if (temp < 0)
+		{
+			SetDlgItemText(IDC_EDIT14_SDQ, L"");
+			MessageBox(L"无效,请输入正数", _T("提示"), MB_OK);
+		}
+	}
+	catch (...)
+	{
+		//MessageBox(L"错误的输入", _T("提示"), MB_OK);
+	}
+}
+
+// 散射次数,小于五次
+void CMFCApplication123Dlg::OnEnKillfocusEdit17J()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	try
+	{
+		CString JTemp;
+		GetDlgItemText(IDC_EDIT17_J, JTemp);
+		int a = _ttoi(JTemp);
+		if (a < 0 || a > 5)
+		{
+			SetDlgItemText(IDC_EDIT17_J, L"5");
+			//MessageBox(L"无效,请输入正数", _T("提示"), MB_OK);
+		}
+	}
+	catch (...)
+	{
+		//MessageBox(L"错误的输入", _T("提示"), MB_OK);
+	}
+}
+
+
+//void CMFCApplication123Dlg::OnEnChangeEdit1Xtxs()
+//{
+//	// TODO:  如果该控件是 RICHEDIT 控件，它将不
+//	// 发送此通知，除非重写 CDialogEx::OnInitDialog()
+//	// 函数并调用 CRichEditCtrl().SetEventMask()，
+//	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
+//
+//	// TODO:  在此添加控件通知处理程序代码
+//}

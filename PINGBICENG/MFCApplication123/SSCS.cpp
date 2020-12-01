@@ -80,22 +80,21 @@ BOOL SSCS::PreTranslateMessage(MSG* pMsg)
 // 初始化
 void SSCS::Init()
 {
-	CFont m_Font;
-	m_Font.CreatePointFont(115, L"微软雅黑", NULL);
-	GetDlgItem(IDC_STATIC_SSCS_R)->SetFont(&m_Font, true);
-	GetDlgItem(IDC_STATIC_SSCS_M)->SetFont(&m_Font, true);
-	m_Font.CreatePointFont(125, L"微软雅黑", NULL);
-	GetDlgItem(IDC_STATIC_SSCS_INFO)->SetFont(&m_Font, true);
-	GetDlgItem(IDC_STATIC_SSCS_INFO2)->SetFont(&m_Font, true);
-	m_Font.CreatePointFont(100, L"微软雅黑", NULL);
-	GetDlgItem(IDC_EDIT_SSCS_REDIT)->SetFont(&m_Font, true);
+	CFont m_Font1, m_Font2, m_Font3;
+	m_Font1.CreatePointFont(115, L"微软雅黑", NULL);
+	GetDlgItem(IDC_STATIC_SSCS_R)->SetFont(&m_Font1, true);
+	GetDlgItem(IDC_STATIC_SSCS_M)->SetFont(&m_Font1, true);
+	m_Font2.CreatePointFont(125, L"微软雅黑", NULL);
+	GetDlgItem(IDC_STATIC_SSCS_INFO)->SetFont(&m_Font2, true);
+	GetDlgItem(IDC_STATIC_SSCS_INFO2)->SetFont(&m_Font2, true);
+	m_Font3.CreatePointFont(100, L"微软雅黑", NULL);
+	GetDlgItem(IDC_EDIT_SSCS_REDIT)->SetFont(&m_Font3, true);
 	//m_static.SetWindowText("100");
 
 	SetDlgItemText(IDC_STATIC_SSCS_R, L"R2");
 	SetDlgItemText(IDC_STATIC_SSCS_M, L"M");
 
 	
-
 	CString Text;
 	Text.Format(L"用户需要输入的散射次数为：%d，\n请逐次输入，\n每次输入完成需要摁下回车键（Enter）。", _ttoi(SSCSText)-1);
 	

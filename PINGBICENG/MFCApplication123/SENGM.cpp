@@ -46,7 +46,6 @@ BOOL SENGM::OnInitDialog()
 	GetDlgItem(IDC_EDIT_USINGINFO)->SetFont(&m_Font, true);
 	//m_static.SetWindowText("100");
 
-
 	CString UsingInfo = L"前提标准：\r\n\r\n" \
 	L"GB 50681-2011 机械工业厂房建筑设计规范\r\n" \
 	L"12.0.6：\r\n" \

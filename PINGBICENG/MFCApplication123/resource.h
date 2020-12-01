@@ -186,6 +186,7 @@
 #define IDC_RADIO14_YYS                 1065
 #define IDC_EDIT23                      1066
 #define IDC_EDIT17_RRR                  1066
+#define IDC_RADIO13_D10_USER            1066
 #define IDC_EDIT24                      1067
 #define IDC_RADIO_SSS                   1067
 #define IDC_RADIO15_SSS                 1067
@@ -240,7 +241,6 @@
 #define IDC_RADIO15_TUJIE               1105
 #define IDC_EDIT28_X2                   1106
 #define IDC_STATIC_USINGINFO            1106
-#define IDC_STATIC_SINGINFO             1106
 #define IDC_RADIO16_3mmlv               1107
 #define IDC_RADIO16_F1                  1108
 #define IDC_RADIO16_F2                  1109
@@ -250,6 +250,8 @@
 #define IDC_STATIC_SSCS_R               1110
 #define IDC_EDIT_SSCS_REDIT             1111
 #define IDC_BUTTON32_OK2                1111
+#define IDC_EDIT14_SDQ2                 1111
+#define IDC_EDIT17_D10_USER             1111
 #define IDC_STATIC_SSCS_INFO            1112
 #define IDC_STATIC_SSCS_INFO2           1113
 
