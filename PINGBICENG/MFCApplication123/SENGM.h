@@ -23,4 +23,6 @@ protected:
 public:
 	//CCaption m_UsingInfo;
 	virtual BOOL OnInitDialog();
+	afx_msg void OnBnClickedOk();
+	virtual void PostNcDestroy();
 };

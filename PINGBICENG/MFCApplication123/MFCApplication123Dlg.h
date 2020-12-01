@@ -90,7 +90,7 @@ protected:
 public:
 	TKSS  m_TKSS;   //m_名称 ：为创建对象的方式
 	YQXZ  m_YQXZ;
-	SENGM m_SHENGM;
+	//SENGM m_SHENGM;
 	SSCS  m_SSCS;
 
 public:
@@ -180,4 +180,5 @@ public:
 	void OnSSCSBtnEnter();
 	
 
+	afx_msg void OnBnClickedBtnShowinfo();
 };

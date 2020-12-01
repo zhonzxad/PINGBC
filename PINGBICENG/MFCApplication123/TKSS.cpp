@@ -60,12 +60,14 @@ BOOL TKSS:: OnInitDialog()
 		// 窗口未弹出时，已从容器中取出名称放在map的第一列
 		for (auto&name : NameText)
 		{
-			Value[name] = "FALSE";
+			if (name != IDC_RADIO_FSS || name != IDC_RADIO_CXSS)
+				Value[name] = "FALSE";
 		}
 	}
 	// 否则根据对应的值写入的界面上
 	else
 	{
+		
 		CString LTJ, DI, DS, HM, H, F, JJ, DR;
 		if (Value[IDC_RADIO_FSS] == "TRUE")
 		{
@@ -141,7 +143,10 @@ void TKSS::OnBnClickedRadioFss()
 	GetDlgItem(IDC_EDIT_JJ)->EnableWindow(FALSE);
 	GetDlgItem(IDC_EDIT_DR)->EnableWindow(FALSE);
 
-
+	SetDlgItemText(IDC_EDIT_H ,L"");
+	SetDlgItemText(IDC_EDIT_F ,L"");
+	SetDlgItemText(IDC_EDIT_JJ,L"");
+	SetDlgItemText(IDC_EDIT_DR,L"");
 }
 
 //用户点击了 侧向散射 后 该窗口的可输入 另一个不可输入
@@ -150,15 +155,19 @@ void TKSS::OnBnClickedRadioCxss()
 	// TODO: 在此添加控件通知处理程序代码
 
 	GetDlgItem(IDC_EDIT_LTJ)->EnableWindow(FALSE);
-	GetDlgItem(IDC_EDIT_DI)->EnableWindow(FALSE);
-	GetDlgItem(IDC_EDIT_DS)->EnableWindow(FALSE);
-	GetDlgItem(IDC_EDIT_HM)->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT_DI )->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT_DS )->EnableWindow(FALSE);
+	GetDlgItem(IDC_EDIT_HM )->EnableWindow(FALSE);
 
 	GetDlgItem(IDC_EDIT_H)->EnableWindow(TRUE);
 	GetDlgItem(IDC_EDIT_F)->EnableWindow(TRUE);
 	GetDlgItem(IDC_EDIT_JJ)->EnableWindow(TRUE);
 	GetDlgItem(IDC_EDIT_DR)->EnableWindow(TRUE);
 
+	SetDlgItemText(IDC_EDIT_LTJ, L"");
+	SetDlgItemText(IDC_EDIT_DI, L"");
+	SetDlgItemText(IDC_EDIT_DS, L"");
+	SetDlgItemText(IDC_EDIT_HM, L"");
 }
 
 
@@ -188,8 +197,6 @@ void TKSS::OnBnClickedOk()
 	GetDlgItemText(IDC_EDIT_JJ,  JJ);        Value[IDC_EDIT_JJ]  = JJ;
 	GetDlgItemText(IDC_EDIT_DR,  DR);        Value[IDC_EDIT_DR]  = DR;
 	
-
-
 
 	CDialogEx::OnOK();
 }

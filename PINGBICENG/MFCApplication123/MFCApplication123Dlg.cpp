@@ -111,6 +111,7 @@ ON_BN_CLICKED(IDC_RADIO16_F1, &CMFCApplication123Dlg::OnBnClickedRadio16F1)
 ON_BN_CLICKED(IDC_RADIO16_F2, &CMFCApplication123Dlg::OnBnClickedRadio16F2)
 ON_BN_CLICKED(IDC_RADIO9_MRZ, &CMFCApplication123Dlg::OnBnClickedRadio9Mrz)
 ON_BN_CLICKED(IDC_RADIO10_SDSR, &CMFCApplication123Dlg::OnBnClickedRadio10Sdsr)
+ON_BN_CLICKED(IDC_BTN_SHOWINFO, &CMFCApplication123Dlg::OnBnClickedBtnShowinfo)
 END_MESSAGE_MAP()
 
 
@@ -157,11 +158,11 @@ BOOL CMFCApplication123Dlg::OnInitDialog()
 	//	L"若您准备开始使用此软件，则默认您已认同该软件的算法.";
 	//SetDlgItemText(IDC_STATIC_USINGINFO, UsingInfo);
 
-	if (m_SHENGM.DoModal() != IDOK)
-	{
-		EndDialog(IDCANCEL);
-		return FALSE;  //弹出声明框
-	}
+	//if (m_SHENGM.DoModal() != IDOK)
+	//{
+	//	EndDialog(IDCANCEL);
+	//	return FALSE;  //弹出声明框
+	//}
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -2153,7 +2154,7 @@ CString CMFCApplication123Dlg::OpenDlgChoseFile()
 
 		GetModuleFileNameA(NULL, szFilePath, sizeof(szFilePath));
 		string strRet(szFilePath);
-		int Pos = strRet.rfind("\\");  // 反序查找 然后进行分割
+		int Pos = static_cast<int>(strRet.rfind("\\"));  // 反序查找 然后进行分割
 		strRet = strRet.substr(0, Pos);
 		strRet.append("\\");
 		strFileName = strRet.c_str();
@@ -2199,7 +2200,7 @@ void CMFCApplication123Dlg::WriteLog(CString s)
 	//str.Format(_T("\r\n"));
 	//str += "\r\n";
 	//str.Insert(str.GetLength(), L"\r\n");
-	str.Append(L"\r\n");
+	str.Append(_T("\r\n"));
 
 	CEdit* pEdit = (CEdit*)GetDlgItem(IDC_EDIT29_RIZHI);
 	int len = pEdit->GetWindowTextLength();
@@ -2236,8 +2237,32 @@ void CMFCApplication123Dlg::OnBnClickedButtonSurvey()
 	}
 }
 
+// 弹出提示信息
+void CMFCApplication123Dlg::OnBnClickedBtnShowinfo()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//if (m_SHENGM.DoModal() != IDOK)
+	//{
+	//	EndDialog(IDCANCEL);
+	//	return FALSE;  //弹出声明框
+	//}
 
+	//std::shared_ptr<SENGM> m_SHENGMDlg = std::make_shared<SENGM>();
+	SENGM * m_SHENGMDlg = nullptr;
+	if (m_SHENGMDlg == nullptr)
+	{
+		m_SHENGMDlg = new SENGM(this);
 
+		if (!(m_SHENGMDlg->Create(IDD_DIALOG_SHENGM, this))) return;
+	}
 
+	int nDlgHeight = 171;
+	int nDlgWidth  = 371;
 
+	//CRect rcClient;
+	//GetClientRect(&rcClient);
 
+	//m_SHENGMDlg->MoveWindow((rcClient.Width() - nDlgWidth) / 2, (rcClient.Height() - nDlgHeight) / 2);
+	
+	m_SHENGMDlg->ShowWindow(SW_SHOW);
+}

@@ -18,6 +18,7 @@
 #define IDC_BUTTON_SURVEY               1000
 #define IDC_BUTTON2                     1001
 #define IDC_BUTTON_SSS                  1001
+#define IDC_BTN_SHOWINFO                1001
 #define IDC_BUTTON3                     1002
 #define IDC_BUTTON_LSS                  1002
 #define IDC_BUTTON4                     1003
@@ -72,6 +73,7 @@
 #define IDC_EDIT1                       1026
 #define IDC_EDIT1_XTXS                  1026
 #define IDC_RADIO_YQXZ_200              1026
+#define IDC_EDIT_USINGINFO              1026
 #define IDC_RADIO2                      1027
 #define IDC_RADIO2_SDSR                 1027
 #define IDC_RADIO_YQXZ_250              1027
@@ -238,6 +240,7 @@
 #define IDC_RADIO15_TUJIE               1105
 #define IDC_EDIT28_X2                   1106
 #define IDC_STATIC_USINGINFO            1106
+#define IDC_STATIC_SINGINFO             1106
 #define IDC_RADIO16_3mmlv               1107
 #define IDC_RADIO16_F1                  1108
 #define IDC_RADIO16_F2                  1109
